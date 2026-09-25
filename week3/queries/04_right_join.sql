@@ -4,13 +4,15 @@
 --
 -- A RIGHT JOIN is just a LEFT JOIN with the tables swapped. SQLite
 -- supports it; many people still write LEFT JOIN only.
+-- You'd use this when the table you must keep is written on the right.
 
 .headers on
 .mode column
 .nullvalue NULL
 
+-- Faculty by department, including empty departments (Music).
 -- Same question as the department-left query in 03_left_join.sql,
--- written from the other side: every department, even Music.
+-- written from the other side.
 SELECT
     i.first_name || ' ' || i.last_name AS instructor,
     d.name AS department
@@ -19,9 +21,10 @@ RIGHT JOIN departments AS d
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
--- Every course, even MATH999 which has no enrollments.
--- CS490 appears with a student (Bob) but that is coincidental; the
--- right table is courses, so unmatched courses still show up.
+-- Course catalog with who is in each class, including courses with
+-- nobody enrolled (MATH999). CS490 appears with a student (Bob) but
+-- that is coincidental; the right table is courses, so unmatched
+-- courses still show up.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,

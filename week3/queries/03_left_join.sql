@@ -9,7 +9,8 @@
 .mode column
 .nullvalue NULL
 
--- N:1 optional: every instructor, even Jordan who has no department.
+-- N:1 optional: full instructor directory, including people not yet
+-- assigned to a department (Jordan).
 SELECT
     i.first_name || ' ' || i.last_name AS instructor,
     d.name AS department
@@ -18,7 +19,7 @@ LEFT JOIN departments AS d
     ON i.department_id = d.id
 ORDER BY instructor;
 
--- 1:N: every department, even Music which has no instructors.
+-- 1:N: faculty by department, including empty departments (Music).
 -- CS appears twice because it has two instructors (the 1:N fan-out).
 SELECT
     d.name AS department,
@@ -28,7 +29,8 @@ LEFT JOIN instructors AS i
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
--- 1:1 optional: every student, with NULL card columns when none exists.
+-- 1:1 optional: ID-card status for every student.
+-- NULL card columns mean that student still needs a card.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.card_number
@@ -37,7 +39,8 @@ LEFT JOIN id_cards AS c
     ON c.student_id = s.id
 ORDER BY student;
 
--- 1:N into the link table: every student, including Grace (no courses).
+-- 1:N into the link table: each student's courses, including students
+-- who have not enrolled (Grace).
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,

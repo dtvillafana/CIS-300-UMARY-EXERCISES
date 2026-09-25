@@ -10,7 +10,7 @@
 .mode column
 .nullvalue NULL
 
--- INNER JOIN: only students who have a mentor.
+-- Mentorship pairs that actually exist (only students who have a mentor).
 SELECT
     mentee.first_name || ' ' || mentee.last_name AS mentee,
     mentor.first_name || ' ' || mentor.last_name AS mentor
@@ -19,7 +19,7 @@ INNER JOIN students AS mentor
     ON mentee.mentor_id = mentor.id
 ORDER BY mentor, mentee;
 
--- LEFT JOIN: every student, including those with no mentor.
+-- Mentorship roster for all students; NULL means unassigned.
 SELECT
     mentee.first_name || ' ' || mentee.last_name AS student,
     mentor.first_name || ' ' || mentor.last_name AS mentor
@@ -28,7 +28,7 @@ LEFT JOIN students AS mentor
     ON mentee.mentor_id = mentor.id
 ORDER BY student;
 
--- Flip it: each mentor with their mentees (1:N fan-out).
+-- Flip it: each mentor's list of mentees (1:N fan-out).
 -- Students who are not mentors disappear on an INNER JOIN.
 SELECT
     mentor.first_name || ' ' || mentor.last_name AS mentor,

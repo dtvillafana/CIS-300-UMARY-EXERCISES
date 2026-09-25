@@ -11,11 +11,13 @@
 .mode column
 .nullvalue NULL
 
+-- Table sizes before joining. The inner M:N result should match enrollment_rows,
+-- not student_rows × course_rows.
 SELECT COUNT(*) AS student_rows FROM students;
 SELECT COUNT(*) AS course_rows FROM courses;
 SELECT COUNT(*) AS enrollment_rows FROM enrollments;
 
--- Inner M:N: only pairs that actually exist. 14 rows.
+-- Who is enrolled in what: the actual student–course pairs. 14 rows.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,
@@ -29,7 +31,7 @@ INNER JOIN courses AS c
     ON c.id = e.course_id
 ORDER BY student, e.semester, c.code;
 
--- Left M:N from students: Grace shows up with NULL course columns.
+-- Each student's schedule, including students with none (Grace).
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,
@@ -41,7 +43,7 @@ LEFT JOIN courses AS c
     ON c.id = e.course_id
 ORDER BY student, c.code;
 
--- Left M:N from courses: MATH999 shows up with NULL student columns.
+-- Each course's roster, including courses with nobody in them (MATH999).
 SELECT
     c.code,
     s.first_name || ' ' || s.last_name AS student,

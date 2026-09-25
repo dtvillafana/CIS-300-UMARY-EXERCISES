@@ -8,7 +8,8 @@
 .mode column
 .nullvalue NULL
 
--- INNER JOIN: 5 instructors who have a department.
+-- Look up each instructor's department (parent fields repeat, rows do
+-- not multiply). INNER JOIN: 5 instructors who have a department.
 -- Computer Science repeats for Ada and Alan. Jordan is dropped.
 SELECT
     i.first_name || ' ' || i.last_name AS instructor,
@@ -19,6 +20,7 @@ INNER JOIN departments AS d
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
+-- Same department lookup, including unassigned instructors.
 -- LEFT JOIN: all 6 instructors. Jordan's department columns are NULL.
 -- Row count stays 6 — N:1 does not fan out.
 SELECT
@@ -29,6 +31,7 @@ LEFT JOIN departments AS d
     ON i.department_id = d.id
 ORDER BY instructor;
 
+-- Confirm N:1 does not change the row count: both should be 6.
 SELECT COUNT(*) AS instructor_rows FROM instructors;
 
 SELECT COUNT(*) AS left_join_rows
@@ -36,7 +39,7 @@ FROM instructors AS i
 LEFT JOIN departments AS d
     ON i.department_id = d.id;
 
--- Another N:1: students to their major. Elena has none.
+-- Each student's declared major, including undeclared (Elena).
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     d.name AS major

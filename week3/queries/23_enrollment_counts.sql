@@ -5,7 +5,7 @@
 .mode column
 .nullvalue NULL
 
--- Students per course, including MATH999 with 0.
+-- Class sizes: how many students are in each course, including MATH999 with 0.
 SELECT
     c.code,
     c.title,
@@ -16,7 +16,7 @@ LEFT JOIN enrollments AS e
 GROUP BY c.id, c.code, c.title
 ORDER BY enrolled DESC, c.code;
 
--- Courses per student, including Grace with 0.
+-- Course load: how many courses each student is taking, including Grace with 0.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     COUNT(e.course_id) AS courses
@@ -26,7 +26,7 @@ LEFT JOIN enrollments AS e
 GROUP BY s.id, s.first_name, s.last_name
 ORDER BY courses DESC, student;
 
--- Instructors per department, including Music with 0.
+-- Department staffing: how many instructors each department has, including Music with 0.
 SELECT
     d.name AS department,
     COUNT(i.id) AS instructors
@@ -36,7 +36,8 @@ LEFT JOIN instructors AS i
 GROUP BY d.id, d.name
 ORDER BY instructors DESC, department;
 
--- Same count with INNER JOIN: Music disappears instead of showing 0.
+-- Same staffing count with INNER JOIN: empty departments disappear
+-- instead of showing 0, so you cannot see that Music has no instructors.
 SELECT
     d.name AS department,
     COUNT(i.id) AS instructors

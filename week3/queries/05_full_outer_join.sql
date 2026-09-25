@@ -10,6 +10,8 @@
 .mode column
 .nullvalue NULL
 
+-- Complete matching of people and departments: every department and
+-- every instructor, paired where possible, orphans on both sides kept.
 SELECT
     d.name AS department,
     i.first_name || ' ' || i.last_name AS instructor
@@ -18,9 +20,9 @@ FULL OUTER JOIN instructors AS i
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
--- 1:1 with unmatched only on the student side (no orphan cards).
--- FULL OUTER JOIN here looks like a LEFT JOIN because every card
--- belongs to a student. That is still a valid 1:1 outer join.
+-- Every student and every card. Unmatched only on the student side
+-- (no orphan cards), so this looks like a LEFT JOIN — extra NULLs are
+-- students who still need a card. Still a valid 1:1 outer join.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.card_number

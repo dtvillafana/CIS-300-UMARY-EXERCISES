@@ -1,6 +1,7 @@
 -- View: unmatched rows  (anti-join)
 -- A LEFT JOIN plus WHERE right.id IS NULL finds rows with no match.
--- This is how you ask "who has none of X?"
+-- This is how you ask "who has none of X?" — gaps such as missing
+-- cards, students with no schedule, empty courses, idle instructors.
 
 .headers on
 .mode column

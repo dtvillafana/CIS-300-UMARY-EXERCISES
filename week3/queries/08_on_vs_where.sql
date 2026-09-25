@@ -7,8 +7,9 @@
 .mode column
 .nullvalue NULL
 
--- Filter in ON: every student, but only attach enrollments that earned an A.
--- Grace still appears (no enrollments). Bob's B in CS101 does not.
+-- Honor-roll style list: keep every student, attach only their A
+-- enrollments. Grace still appears (no enrollments). Bob's B in CS101
+-- does not.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,
@@ -21,7 +22,7 @@ LEFT JOIN courses AS c
     ON c.id = e.course_id
 ORDER BY student, c.code;
 
--- Filter in WHERE: only rows whose enrollment grade is A.
+-- Only the A records — students with no A drop out.
 -- Grace disappears. Anyone whose only grades are B/C disappears too.
 SELECT
     s.first_name || ' ' || s.last_name AS student,

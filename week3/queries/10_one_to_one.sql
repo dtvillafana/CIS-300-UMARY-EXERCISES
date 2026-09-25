@@ -8,9 +8,11 @@
 .mode column
 .nullvalue NULL
 
+-- Table sizes before joining, so you can see that 1:1 does not multiply rows.
 SELECT COUNT(*) AS student_rows FROM students;
 SELECT COUNT(*) AS card_rows FROM id_cards;
 
+-- Students who have a card, with number and issue date.
 -- INNER JOIN: only the 5 students who have a card. Still 5 rows, not more.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
@@ -21,11 +23,13 @@ INNER JOIN id_cards AS c
     ON c.student_id = s.id
 ORDER BY student;
 
+-- Same 1:1 inner join, just the row count: should equal card_rows.
 SELECT COUNT(*) AS inner_join_rows
 FROM students AS s
 INNER JOIN id_cards AS c
     ON c.student_id = s.id;
 
+-- Same lookup including students who still need a card.
 -- LEFT JOIN: all 8 students. Extra rows are unmatched, not duplicates.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
@@ -35,6 +39,7 @@ LEFT JOIN id_cards AS c
     ON c.student_id = s.id
 ORDER BY student;
 
+-- Same 1:1 left join, just the row count: should equal student_rows.
 SELECT COUNT(*) AS left_join_rows
 FROM students AS s
 LEFT JOIN id_cards AS c

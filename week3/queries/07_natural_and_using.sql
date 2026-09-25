@@ -6,8 +6,9 @@
 .mode column
 .nullvalue NULL
 
--- USING (course_id): the join column has the same name on both sides.
--- We alias courses.id to course_id so the names line up.
+-- USING (course_id): same grade list as an INNER JOIN, matching on a
+-- shared column name instead of ON. We alias courses.id to course_id
+-- so the names line up.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
     c.code,
@@ -23,9 +24,10 @@ INNER JOIN (
 ) AS s USING (student_id)
 ORDER BY student, c.code;
 
--- NATURAL JOIN matches EVERY shared column name.
--- students and instructors share id, first_name, and last_name, so this
--- only returns rows where all three are equal — nobody. Empty on purpose.
+-- NATURAL JOIN matches EVERY shared column name — a cautionary example,
+-- not something you'd run for answers. students and instructors share
+-- id, first_name, and last_name, so this only returns rows where all
+-- three are equal — nobody. Empty on purpose.
 SELECT
     s.id AS student_id,
     i.id AS instructor_id,
@@ -34,8 +36,8 @@ SELECT
 FROM students AS s
 NATURAL JOIN instructors AS i;
 
--- A NATURAL JOIN that happens to work: wrap the tables so the only
--- shared name is the key you actually want.
+-- Same enrollment / grade list, with NATURAL JOIN after wrapping the
+-- tables so the only shared name is the key you actually want.
 SELECT
     student,
     code,

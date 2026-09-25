@@ -4,6 +4,10 @@
 --
 -- 8 students × 7 courses = 56 rows. Almost none of those pairs are real
 -- enrollments. That is why INNER / OUTER joins need an ON clause.
+--
+-- You would almost never run this for answers. It is here to show every
+-- possible student–course pairing, then contrast that 56-row dump with
+-- the 14 real enrollments.
 
 .headers on
 .mode column
@@ -16,10 +20,12 @@ FROM students AS s
 CROSS JOIN courses AS c
 ORDER BY student, c.code;
 
+-- How many pairs the cartesian product produced (should be 8 × 7 = 56).
 SELECT COUNT(*) AS cross_join_rows
 FROM students
 CROSS JOIN courses;
 
+-- How many of those pairs are real enrollments (14). The gap is the point.
 SELECT COUNT(*) AS real_enrollment_rows
 FROM enrollments;
 

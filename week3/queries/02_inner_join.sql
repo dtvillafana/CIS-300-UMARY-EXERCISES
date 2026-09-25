@@ -8,6 +8,7 @@
 .nullvalue NULL
 
 -- N:1  instructors -> departments
+-- Who works in which department. Only people who are assigned;
 -- Jordan is dropped because department_id is NULL.
 SELECT
     i.first_name || ' ' || i.last_name AS instructor,
@@ -18,6 +19,7 @@ INNER JOIN departments AS d
 ORDER BY department, instructor;
 
 -- 1:1  students -> id_cards
+-- Which students currently have an ID card on file.
 -- Elena, Farid, and Grace are dropped because they have no card.
 SELECT
     s.first_name || ' ' || s.last_name AS student,
@@ -28,6 +30,7 @@ INNER JOIN id_cards AS c
 ORDER BY student;
 
 -- M:N  students <-> courses, through the enrollments link table
+-- Grade list: who took which course, when, and what they earned.
 -- Grace is dropped (no enrollments). MATH999 is dropped (no enrollments).
 SELECT
     s.first_name || ' ' || s.last_name AS student,

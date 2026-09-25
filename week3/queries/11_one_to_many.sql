@@ -9,9 +9,11 @@
 .mode column
 .nullvalue NULL
 
+-- Table sizes before joining, so you can compare them to the fan-out below.
 SELECT COUNT(*) AS department_rows FROM departments;
 SELECT COUNT(*) AS instructor_rows FROM instructors;
 
+-- Faculty roster by department (empty departments omitted).
 -- INNER JOIN: 5 rows (not 6). Music is gone; Jordan is gone.
 -- CS is listed twice — that is the 1:N fan-out.
 SELECT
@@ -22,6 +24,7 @@ INNER JOIN instructors AS i
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
+-- Faculty roster by department, keeping empty departments.
 -- LEFT JOIN: 6 rows. Music stays, with a NULL instructor.
 -- Jordan still does not appear because we started from departments.
 SELECT
@@ -32,9 +35,9 @@ LEFT JOIN instructors AS i
     ON i.department_id = d.id
 ORDER BY department, instructor;
 
--- Same 1:N shape, different tables: one instructor, many courses.
--- Emmy Noether teaches MATH210 and MATH999, so she fans out to 2 rows.
--- Jordan teaches none.
+-- Teaching assignments: what each instructor teaches, including people
+-- with no courses. Emmy Noether teaches MATH210 and MATH999, so she
+-- fans out to 2 rows. Jordan teaches none.
 SELECT
     i.first_name || ' ' || i.last_name AS instructor,
     c.code
