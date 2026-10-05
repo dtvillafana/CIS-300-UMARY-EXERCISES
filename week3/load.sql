@@ -9,6 +9,7 @@
 --
 -- Join types live in queries/01 through 08.
 -- Cardinalities live in queries/10 through 13.
+-- A fan trap and its intermediary-table fix live in queries/14_fan_trap.sql.
 
 PRAGMA foreign_keys = ON;
 
