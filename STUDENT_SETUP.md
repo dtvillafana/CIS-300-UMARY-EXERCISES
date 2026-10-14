@@ -9,8 +9,7 @@ Python is needed only if you want to run the optional SQL checks.
 
 On the repository's GitHub page choose **Code → Download ZIP**, then extract
 the ZIP into a folder you can find, such as Documents. Do not work inside
-the ZIP. If your instructor supplied a download, extract that instead.
-Keep the folder structure intact; `chapters7-8/` contains the guided lessons.
+the ZIP. Keep the folder structure intact; `chapters7-8/` contains the guided lessons.
 You may use Git instead if you already know it.
 
 ## 2. Choose your setup
