@@ -87,7 +87,7 @@ DELETE FROM product WHERE P_CODE = '0012';
 SELECT changes() AS DeletedRows;
 ROLLBACK;
 -- Run separately: DELETE FROM product WHERE P_CODE='P2'; -- FK error
--- 8.3e: commit success; failure rollback is covered in embedded.py/tests.
+-- 8.3e: commit success; run ROLLBACK after a failure to cancel the transaction.
 BEGIN TRANSACTION;
 INSERT INTO invoice VALUES (1006, 1, '2026-10-14');
 INSERT INTO line VALUES (1006, 1, 'P2', 1, 45), (1006, 2, 'P3', 2, 30);

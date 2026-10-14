@@ -32,6 +32,6 @@ ROLLBACK;
 -- TASK 8.3e: atomic sale: BEGIN, insert header 1006, insert two lines,
 --   reduce stock, COMMIT. In a fresh reset, make the second line's product
 --   invalid; explicitly ROLLBACK after error and verify no header/first
---   line/stock change remains. See embedded.py for safe error handling.
+--   line/stock change remains. Run ROLLBACK after an error to cancel the transaction.
 -- REFLECT: missing WHERE updates/deletes all rows; autocommit and error
 --   handling matter. COMMIT WORK is dialect syntax; SQLite uses COMMIT.

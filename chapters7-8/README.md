@@ -1,21 +1,12 @@
 # Chapters 7–8: guided SQL exercises
 
-Original exercises based on `Coronel_DatabaseSystems_13e_ch07.pptx` (40 slides)
-and `Coronel_DatabaseSystems_13e_ch08.pptx` (32 slides), including their speaker
-notes, in `../CIS-300-UMary/presentations/`. See [COVERAGE.md](COVERAGE.md)
-for a slide-by-slide topic map. These are practice datasets, not copies of
-the textbook's full sample database.
-
 ## Start here
 
 Use **DB Browser for SQLite** (`sqlitebrowser`) for these SQLite lessons,
-with **SQLite 3.39 or later** (RIGHT/FULL JOIN support). Work only in your own
-disposable lab database; do not run these files against a work or production
-database. The existing `week3/` is untouched.
-
+with **SQLite 3.39 or later** (RIGHT/FULL JOIN support).
 Install DB Browser for SQLite using the [student setup guide](../STUDENT_SETUP.md),
 then open it from your application menu. Windows, macOS, and Linux are supported;
-Nix and a terminal are not required. Downloading and extracting the repository
+Downloading and extracting the github repository
 ZIP is sufficient; Git is optional.
 
 1. Click **New Database** and save it as `chapters7-8/lab.sqlite3`. Cancel
@@ -45,7 +36,6 @@ replaces CLI output formatting.
 `setup.sql` destroys and rebuilds only the lab's named objects. Finish or
 revert pending changes, then rerun the whole setup and click **Write Changes**
 before each Chapter 8 lesson or answer-key file. Chapter 7 lessons are read-only.
-Do not commit generated database files or their journal/WAL files.
 
 ## How to practice
 
@@ -85,7 +75,6 @@ part of a whole-file batch.
 | 8.5 | Trigger timing/events/actions, OLD/NEW, DROP TRIGGER | 8:20–21 |
 | Postgres A | Schemas, permissions, types/ALTER, ALL/ANY, sequences | 7:3–7,32,36; 8:3–10,15–16 |
 | Postgres B | PL/pgSQL blocks, procedures, cursors, functions, triggers | 8:17–26 |
-| 8.6 | Host variables, diagnostics, static/dynamic SQL | 8:27–30 |
 
 Chapters 7 and 8 are more than one class session: split the sequence at
 aggregation, schema changes, and procedural SQL as needed.
@@ -151,16 +140,15 @@ PostgreSQL tools instead.
 ## Check the supplied examples and answers
 
 These optional automated checks run in a terminal, not the DB Browser SQL
-editor. Install Python using the [student setup guide](../STUDENT_SETUP.md#optional-python-lab),
+editor. Install Python using the [student setup guide](../STUDENT_SETUP.md#optional-python-checks),
 or use the optional Nix developer shell. From the repository root:
 
 ```sh
 cd chapters7-8
 python3 check.py
-python3 -m unittest test_embedded.py
 ```
 
-On Windows, use `py` instead of `python3` for both commands.
+On Windows, use `py` instead of `python3`.
 
 Checks use fresh in-memory databases, enable foreign keys, execute all
 SQLite lessons and answer keys, and verify important expected results,

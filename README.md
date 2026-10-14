@@ -4,8 +4,7 @@ Exercises to be be used in class
 ## Student setup — no Nix required
 
 Start with the [student setup guide](STUDENT_SETUP.md). It covers Windows,
-macOS, and Linux using graphical applications, plus an instructor-hosted
-option for Chromebooks and restricted computers. No terminal, Git, Docker,
+macOS, and Linux using graphical applications. No terminal, Git, Docker,
 or Nix is required for the SQL lessons.
 
 - **SQLite lessons:** DB Browser for SQLite.

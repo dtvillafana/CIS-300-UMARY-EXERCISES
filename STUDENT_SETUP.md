@@ -1,9 +1,9 @@
 # Student setup
 
 You do **not** need Nix, Docker, Git, or a terminal for the SQL exercises.
-Use two graphical applications: one for SQLite, another for PostgreSQL.
-Python is needed only if you are assigned the separate embedded-Python lab
-or want to run the optional Python checks.
+All exercises run locally on your computer. Use two graphical applications:
+one for SQLite, another for PostgreSQL.
+Python is needed only if you want to run the optional SQL checks.
 
 ## 1. Get the exercise files
 
@@ -20,12 +20,11 @@ You may use Git instead if you already know it.
 | Windows | [DB Browser for SQLite](https://sqlitebrowser.org/dl/), Windows installer | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/), including pgAdmin |
 | macOS (Apple Silicon or Intel) | [DB Browser for SQLite](https://sqlitebrowser.org/dl/), macOS download | [PostgreSQL macOS options](https://www.postgresql.org/download/macosx/); choose an installer appropriate for your Mac, plus [pgAdmin](https://www.pgadmin.org/download/) if not bundled |
 | Linux | [DB Browser for SQLite](https://sqlitebrowser.org/dl/), distribution package or suitable AppImage | [PostgreSQL packages for your distribution](https://www.postgresql.org/download/linux/) and [pgAdmin](https://www.pgadmin.org/download/) |
-| Chromebook, tablet, or locked-down school computer | Use an instructor-provided lab computer or remote desktop with DB Browser installed | Use an instructor-provided browser-based pgAdmin or remote desktop; see below |
 
 Use a current stable PostgreSQL release, not a beta. The SQL companions
 require PostgreSQL 11 or newer; a currently supported release is recommended.
 Choose installers matching your machine's architecture. On school-managed
-devices, ask for an approved installation or hosted lab rather than trying
+devices, ask for an approved local installation rather than trying
 to bypass installation restrictions.
 
 **These are different programs:** DB Browser opens a SQLite file on your
@@ -65,7 +64,7 @@ Follow the platform's instructions to start the PostgreSQL service/server.
    - Username/password: the database credentials from installation
      (the installer-created administrative username is often `postgres`).
 2. If prompted for a pgAdmin master password, remember it is separate from
-   the PostgreSQL database password. Do not put either in your SQL files.
+   the PostgreSQL database password.
 3. Right-click **Databases → Create → Database**, name it `cis300_lab`,
    and save. Use only this disposable database for the companions.
 4. Select **cis300_lab**, then open **Tools → Query Tool**.
@@ -75,60 +74,15 @@ Use the local administrative account only for your own disposable lab.
 Do not expose the server to the internet or change real accounts/permissions
 for the paper-only GRANT/REVOKE tasks.
 
-### Chromebook or a computer where you cannot install software
-
-Ask your instructor for a hosted lab URL, login, and your **own disposable
-PostgreSQL database**. Browser-based pgAdmin works without installing a local
-server. These resources are not provisioned by this repository; access must
-be arranged by the instructor. Use the supplied connection details rather
-than `localhost` or an administrative account. If you cannot create a
-database, ask the instructor to provide one.
-
-The hosted service must allow your lab user to create tables, sequences,
-views, procedures, functions, and triggers, and run PL/pgSQL. Do not use
-a shared writable database: students' object names would collide. Keep
-each student's connection/session private too (the cursor/sequence tasks
-depend on session state). The SQLite core still needs DB Browser on a lab
-computer or remote desktop; a PostgreSQL web editor is not a SQLite replacement.
-
-Generic online SQL playgrounds are not the default for this course: some
-reset the session between runs or disallow stored routines. Those restrictions
-break parts of the sequence and procedural exercises. If using an alternative
-service, the instructor should validate the complete companion check first.
-Use only the supplied fictional lab data on third-party services.
-
-## Optional Python lab
-
-Only the embedded-Python lesson and automatic Python checks need this setup.
-Install a current stable [Python 3](https://www.python.org/downloads/)
-(3.11 or newer), or your Linux distribution's Python 3 package with SQLite
-support. No third-party Python packages are needed. Python's SQLite engine
-must also be at least 3.39.0; updating DB Browser does not update Python's copy.
-
-Open a terminal in your extracted repository folder. On Windows use `py`;
-on macOS/Linux use `python3`. For example, check the bundled SQLite version:
-
-```sh
-python3 -c "import sqlite3; print(sqlite3.sqlite_version)"
-```
-
-Then follow the [embedded-Python lesson](chapters7-8/chapter8/06_embedded.md).
-If a school computer's Python/SQLite is too old, ask for an updated lab
-environment rather than changing system files yourself.
 
 ## Common problems
 
 | Problem | What to check |
 | --- | --- |
 | pgAdmin says connection refused | PostgreSQL must be installed **and running**. Check host and port; pgAdmin is only a client. |
-| Password authentication failed | Use the database password for that server, not your computer login or pgAdmin master password. Ask the instructor about hosted credentials. |
-| Permission denied creating a database/object | On a hosted server, request a personal lab database with the required privileges. Do not run GRANT statements against a school server yourself. |
+| Password authentication failed | Use the database password for that server, not your computer login or pgAdmin master password. |
 | `relation already exists` | Setup has already run in this database. Use a new empty database, for example `cis300_lab2`, for a clean restart. Do not drop unrelated objects. |
 | `current transaction is aborted` | Run `ROLLBACK;` on its own, fix the original error, and retry the exercise from its `BEGIN;`. |
 | `currval ... is not yet defined in this session` | Run the worked `nextval` then `currval` in the same Query Tool tab/connection. Reconnecting resets session state. |
 | Sequence values differ from the comments | Values advance even when you roll back. Exact predictions assume a fresh database and one run of the examples. |
 | SQLite rejects RIGHT/FULL JOIN | Check `SELECT sqlite_version();`; update the SQLite engine bundled with your editor if it is older than 3.39.0. |
-
-Automatic checks and command-line instructions are optional for students
-unless assigned. Nix remains an [optional developer environment](README.md#optional-developer-environment-nix),
-not a course requirement.

@@ -5,7 +5,14 @@ from collections.abc import Iterator
 from contextlib import closing
 from pathlib import Path
 
-from embedded import ROOT, connect_lab
+ROOT = Path(__file__).resolve().parent
+
+
+def connect_lab() -> sqlite3.Connection:
+    """Create a fresh lab; callers close the connection when finished."""
+    connection = sqlite3.connect(":memory:", isolation_level=None)
+    connection.executescript((ROOT / "setup.sql").read_text())
+    return connection
 
 
 def statements(path: Path) -> Iterator[str]:
