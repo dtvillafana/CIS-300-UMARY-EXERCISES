@@ -20,7 +20,7 @@ EXPLAIN QUERY PLAN SELECT P_CODE FROM product WHERE P_PRICE > 30;
 DROP INDEX product_price_idx; -- Leaves seven products intact.
 
 -- TASK 8.1a: classify CREATE/INSERT/SELECT/COMMIT/GRANT as DDL/DML/TCL/DCL.
---   In Oracle A create a schema/namespace and describe database vs schema.
+--   In Postgres A describe schema/namespace vs database (PA1, paper task).
 -- TASK 8.1b: create part with text code PK, description NOT NULL UNIQUE,
 --   price NUMERIC(8,2) NOT NULL DEFAULT 0 CHECK >=0, and optional vendor FK.
 --   Give the constraints names; reference vendor(V_CODE) explicitly.
@@ -34,4 +34,4 @@ DROP INDEX product_price_idx; -- Leaves seven products intact.
 --   and compare snapshot P2=45 with current P2=15; ROLLBACK afterward.
 -- TASK 8.1f: specify types for '0012', units, state, receipt date, price;
 --   explain NUMBER/NUMERIC/DECIMAL precision & scale, INTEGER/SMALLINT,
---   CHAR vs VARCHAR/VARCHAR2, and Oracle DATE vs SQLite ISO text.
+--   CHAR vs VARCHAR (Oracle VARCHAR2), and PostgreSQL DATE vs SQLite ISO text.

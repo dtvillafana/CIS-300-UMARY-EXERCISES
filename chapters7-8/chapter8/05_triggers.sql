@@ -23,14 +23,14 @@ SELECT COUNT(*) AS AuditRowsAfterRollback FROM price_audit; -- 0.
 
 -- TASK 8.5a: label AFTER, UPDATE OF, FOR EACH ROW, WHEN, BEGIN/END;
 --   contrast BEFORE/AFTER/INSTEAD OF and row/statement levels.
---   SQLite supports row-level triggers, not statement-level PL/SQL.
+--   SQLite supports row-level triggers, not PostgreSQL statement-level triggers.
 -- TASK 8.5b: add separate INSERT and DELETE audit triggers. Insert then
 --   delete an unsold T1 within BEGIN/ROLLBACK; two audit rows then none.
 -- TASK 8.5c: update all seven products by +1: seven UPDATE audit rows;
 --   set a price to itself: zero new audit rows. Explain the WHEN guard.
 -- TASK 8.5d: DROP TRIGGER price_audit_update, update P2 within a transaction,
 --   verify no audit row but price changed; ROLLBACK. Table/audit survive.
--- TASK 8.5e: in Oracle B write one multi-event trigger using INSERTING,
---   UPDATING, DELETING and :OLD/:NEW. Trace which images exist per event.
+-- TASK 8.5e: in Postgres B write one multi-event trigger using TG_OP,
+--   OLD/NEW and a RETURNS TRIGGER function. Trace which images exist per event.
 -- REFLECT: CHECK is preferable to a trigger for a simple nonnegative price;
 --   a rolled-back audit is not a durable record of failed attempts.

@@ -11,7 +11,7 @@ SELECT ABS(-7) AS Magnitude, ROUND(19.956, 2) AS Rounded,
 --   with 'SAW'; concatenate code || ': ' || trimmed description.
 -- TASK 7.6b: date/time functions: get receipt year/month with strftime,
 --   add one month with date, and display a fixed timestamp with datetime.
---   Also write Oracle EXTRACT(YEAR FROM P_INDATE) syntax on paper.
+--   Also run PostgreSQL EXTRACT(YEAR FROM P_INDATE) in Postgres A (PA4).
 -- TASK 7.6c: CAST P_PRICE AS TEXT and inspect typeof before/after; cast
 --   'not a number' AS NUMERIC (SQLite returns 0, not a validation error).
 --   Why is casting not adequate input validation?

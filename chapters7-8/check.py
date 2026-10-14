@@ -199,7 +199,7 @@ def main() -> None:
     print(
         f"PASS: {len(files)} SQLite files, {statement_count} statements, {assertions} invariant checks."
     )
-    print("Oracle files are separate practice and were not executed.")
+    print("PostgreSQL companions are checked separately with postgres/check.sql.")
 
 
 if __name__ == "__main__":

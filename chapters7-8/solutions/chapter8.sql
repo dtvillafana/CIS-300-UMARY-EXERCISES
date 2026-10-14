@@ -55,7 +55,7 @@ PRAGMA foreign_key_check(part_new);
 DROP TABLE part;
 ALTER TABLE part_new RENAME TO part;
 COMMIT;
--- 8.2c: Oracle syntax in oracle.sql; SQLite can't ALTER ADD constraints.
+-- 8.2c: PostgreSQL syntax in postgres.sql; SQLite can't ALTER ADD constraints.
 -- 8.2d
 CREATE TABLE scratch_product AS SELECT * FROM part;
 ALTER TABLE scratch_product DROP COLUMN PART_DISCOUNT;
@@ -100,7 +100,7 @@ CREATE VIEW vendor_summary AS
 SELECT V_CODE, COUNT(*) AS N, AVG(P_PRICE) AS MeanPrice FROM product GROUP BY V_CODE;
 SELECT * FROM vendor_summary ORDER BY V_CODE;
 -- 8.4b: a grouped row/UNION/DISTINCT has no unique base-row write target;
--- join-view updatability varies. Oracle CHECK OPTION answer in oracle.sql.
+-- join-view updatability varies. PostgreSQL CHECK OPTION answer in postgres.sql.
 -- 8.4c
 CREATE VIEW product_prices AS SELECT P_CODE, P_PRICE FROM product;
 CREATE TRIGGER product_prices_update INSTEAD OF UPDATE OF P_PRICE ON product_prices
@@ -157,4 +157,4 @@ BEGIN TRANSACTION;
 UPDATE product SET P_PRICE = 50 WHERE P_CODE = 'P2';
 SELECT COUNT(*) AS NoAudit FROM price_audit;
 ROLLBACK;
--- 8.5e: Oracle multi-event trigger in oracle.sql.
+-- 8.5e: PostgreSQL multi-event trigger in postgres.sql.

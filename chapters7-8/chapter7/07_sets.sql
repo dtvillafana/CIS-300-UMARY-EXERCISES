@@ -9,7 +9,8 @@ ORDER BY CUS_CODE; -- 1,2,3 (deduplicated).
 -- TASK 7.7b: INTERSECT customers with invoices before Oct 1 and in October
 --   (customer 2; the empty invoice still counts as an invoice).
 -- TASK 7.7c: EXCEPT all customer codes minus invoice customer codes (4).
---   Reverse the operands (no rows). Translate EXCEPT to Oracle MINUS.
+--   Reverse the operands (no rows). Compare PostgreSQL EXCEPT with the
+--   slides' Oracle MINUS spelling (Postgres A, PA5).
 -- TASK 7.7d: reproduce 7.7c with correlated NOT EXISTS (4).
 -- TASK 7.7e: combine two compatible two-column projections (code,price)
 --   for vendor 10 and vendor 20. Explain column-count/type compatibility

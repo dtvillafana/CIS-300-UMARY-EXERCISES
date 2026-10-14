@@ -25,7 +25,7 @@ SELECT DISTINCT V_CODE FROM product ORDER BY V_CODE;
 -- TASK 7.1c: return distinct assigned vendor codes, excluding NULL (10,20,30).
 --   Then add P_PRICE: why does DISTINCT now yield five vendor/price pairs?
 -- TASK 7.1d: compute 2 cubed by multiplication; compare the written
---   POWER(2,3) function in Oracle. Explain why ^ and ** are not portable.
+--   POWER(2,3) function in PostgreSQL. Explain why ^ and ** are not portable.
 -- TASK 7.1e: find P2's receipt date plus 30 days and days from its receipt
 --   to 2026-10-11 (2026-10-31 and 10). Do not subtract ISO strings directly.
 -- REFLECT: SELECT is DML here; CREATE is DDL, COMMIT is TCL, GRANT is DCL.

@@ -24,7 +24,7 @@ ROLLBACK;
 -- TASK 8.4a: create vendor_summary with count and mean by V_CODE (4 rows).
 --   Why can't its averages be mapped automatically to one base product?
 -- TASK 8.4b: compare restrictions from GROUP BY/aggregates, DISTINCT,
---   UNION, and JOIN. Write Oracle WITH CHECK OPTION practice (Oracle A).
+--   UNION, and JOIN. Run PostgreSQL WITH CHECK OPTION practice (Postgres A).
 -- TASK 8.4c: use one UPDATE to increase all vendor 20 prices by 5% in a
 --   transaction via product_prices; both become 31.50; ROLLBACK.
 --   This is a batch update, not a guarantee of atomicity without a transaction.

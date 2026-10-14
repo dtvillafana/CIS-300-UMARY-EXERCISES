@@ -33,11 +33,12 @@ ALTER TABLE part DROP COLUMN PART_NOTE;
 --   retain PK/FK/price CHECK and both rows. Validate counts/FKs before COMMIT.
 --   Do not disable foreign keys to hide errors. General parent-table rebuilds
 --   also need a plan for incoming FKs, indexes, views, and triggers.
--- TASK 8.2c: write Oracle ALTER ... MODIFY type/length, ADD PRIMARY KEY,
---   ADD FOREIGN KEY, ADD CHECK, and DROP CONSTRAINT (Oracle A).
+-- TASK 8.2c: write PostgreSQL ALTER COLUMN TYPE, ADD PRIMARY KEY,
+--   ADD FOREIGN KEY, ADD CHECK, and DROP CONSTRAINT (Postgres A, PA6).
 --   Profile duplicates, orphans, invalid numeric text, NULLs, and too-long
 --   descriptions before changing a populated table's characteristics.
 -- TASK 8.2d: create a disposable part copy, DROP one column, DROP the table.
 --   Contrast DROP TABLE, DROP COLUMN, and DELETE FROM; which loses structure?
 -- REFLECT: adding NOT NULL with a default may be legal; doing it without
---   backfill/default can fail. Oracle DDL may implicitly commit.
+--   backfill/default can fail. PostgreSQL lab DDL can roll back inside BEGIN;
+--   Oracle DDL in the slides implicitly commits instead.

@@ -36,7 +36,7 @@ Do not commit generated database files.
    deliberately not executable blanks: each lesson can run unchanged.
 4. Check the stated row counts, boundary cases, and NULL behavior.
 5. Compare with `solutions/chapter7.sql` or `solutions/chapter8.sql` only
-   after attempting the task. Oracle answers are in a separate file.
+   after attempting the task. PostgreSQL answers are in `solutions/postgres.sql`.
 
 ## Lesson order
 
@@ -55,8 +55,8 @@ Do not commit generated database files.
 | 8.3 | INSERT variants, INSERT SELECT, UPDATE, DELETE, COMMIT/ROLLBACK | 8:11–12 |
 | 8.4 | Views, snapshots, writable views, batch updates | 8:13–14 |
 | 8.5 | Trigger timing/events/actions, OLD/NEW, DROP TRIGGER | 8:20–21 |
-| Oracle A | Schemas, permissions, types/ALTER, ALL/ANY, sequences | 7:3–7,32,36; 8:3–10,15–16 |
-| Oracle B | PL/SQL blocks, procedures, cursors, functions, triggers | 8:17–26 |
+| Postgres A | Schemas, permissions, types/ALTER, ALL/ANY, sequences | 7:3–7,32,36; 8:3–10,15–16 |
+| Postgres B | PL/pgSQL blocks, procedures, cursors, functions, triggers | 8:17–26 |
 | 8.6 | Host variables, diagnostics, static/dynamic SQL | 8:27–30 |
 
 Chapters 7 and 8 are more than one class session: split the sequence at
@@ -86,21 +86,22 @@ sales on September 30, October 1/31, and November 1, 2026.
 ## SQL dialects and important corrections
 
 The runnable core follows the existing repository's SQLite approach.
-`oracle/` is **Oracle SQL/PLSQL practice**, not SQLite-compatible code.
-The Oracle tasks include setup instructions and worked syntax; execute
-only in a disposable Oracle schema you are authorized to use, or trace
-the results on paper if Oracle is unavailable. No Oracle execution is
-claimed by the local checks.
+[`postgres/`](postgres/README.md) supplies **PostgreSQL/PL/pgSQL practice**,
+not SQLite-compatible code. It replaces the Oracle companions with the same
+guided concepts and data. Its README includes setup, a private local server,
+checks, and a slide-syntax translation table. Only use a disposable database.
+The slides' Oracle-specific spellings are compared, not required to run.
 
 - SQLite has no `CREATE SCHEMA AUTHORIZATION`, `GRANT`/`REVOKE`, independent
-  sequences, `ALL`/`ANY`, or stored PL/SQL procedures/functions. Do the
-  Oracle exercises rather than silently skipping these topics.
-- SQLite supports ADD/DROP COLUMN but not Oracle MODIFY or general ALTER
-  ADD/DROP CONSTRAINT. Lab 8.2 demonstrates a safe rebuild instead.
-- SQLite views need INSTEAD OF triggers to be writable. Oracle's automatic
-  view updatability and `WITH CHECK OPTION` are exercised separately.
+  sequences, `ALL`/`ANY`, or stored procedures/functions. Do the PostgreSQL
+  companions rather than silently skipping these topics.
+- SQLite supports ADD/DROP COLUMN but not general ALTER ADD/DROP CONSTRAINT
+  or ALTER COLUMN TYPE. Lab 8.2 demonstrates a safe rebuild; Postgres A
+  exercises native ALTER (not the slides' Oracle `MODIFY`).
+- SQLite views need INSTEAD OF triggers to be writable. PostgreSQL's automatic
+  simple-view updatability and `WITH CHECK OPTION` are exercised separately.
 - SQLite uses type affinity: `VARCHAR(n)` length and `NUMERIC(p,s)` precision
-  are not enforced as in Oracle. Prices here are teaching values; a real
+  are not enforced as in PostgreSQL. Prices here are teaching values; a real
   SQLite financial application should use integer minor units or an
   explicit exact-decimal strategy. Round displayed totals, not assumptions.
 - Precision counts decimal digits, not the sign/decimal point. SMALLINT
@@ -109,8 +110,9 @@ claimed by the local checks.
   not copy keys/defaults/constraints. A view is not a frozen snapshot.
 - `^`/`**` are not portable exponentiation. Use `POWER` where available;
   the SQLite task uses multiplication and includes a dialect comparison.
-- ROLLBACK cancels only pending changes, not past commits. Oracle DDL can
-  implicitly commit, so never assume a DROP can be rolled back.
+- ROLLBACK cancels only pending changes, not past commits. PostgreSQL's lab
+  DDL is transactional, unlike Oracle's implicit DDL commits; sequence values
+  still are not restored by rollback. `psql` needs explicit BEGIN for these tests.
 - A self-join retrieves one manager level, not an entire recursive tree.
   Logical clause/subquery evaluation is not a physical execution guarantee.
 - Functions can be called from SQL when the DBMS's restrictions are met.
@@ -126,4 +128,6 @@ python3 -m unittest test_embedded.py
 Checks use fresh in-memory databases, enable foreign keys, execute all
 SQLite lessons and answer keys, and verify important expected results,
 constraint failures, view/trigger behavior, and transaction rollback.
-They do not execute Oracle SQL or grade arbitrary student submissions.
+They do not execute PostgreSQL SQL or grade arbitrary student submissions.
+For companion validation, run `postgres/check.sql` in a separate empty
+PostgreSQL database as described in [postgres/README.md](postgres/README.md).

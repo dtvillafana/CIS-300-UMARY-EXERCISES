@@ -1,0 +1,43 @@
+-- PostgreSQL only. Create in an EMPTY disposable database; no automatic drops.
+-- Transactional setup: an existing object causes failure, not a partial reset.
+BEGIN;
+CREATE TABLE LAB_VENDOR (
+    V_CODE INTEGER PRIMARY KEY,
+    V_NAME VARCHAR(40) NOT NULL UNIQUE,
+    V_STATE CHAR(2) NOT NULL
+);
+CREATE TABLE LAB_PRODUCT (
+    P_CODE VARCHAR(10) PRIMARY KEY,
+    P_DESCRIPT VARCHAR(80) NOT NULL,
+    P_INDATE DATE NOT NULL,
+    P_QOH INTEGER DEFAULT 0 NOT NULL CHECK (P_QOH >= 0),
+    P_MIN SMALLINT DEFAULT 0 NOT NULL CHECK (P_MIN >= 0),
+    P_PRICE NUMERIC(8, 2) NOT NULL CHECK (P_PRICE >= 0),
+    P_DISCOUNT NUMERIC(4, 2) DEFAULT 0 NOT NULL
+        CHECK (P_DISCOUNT BETWEEN 0 AND 1),
+    V_CODE INTEGER REFERENCES LAB_VENDOR (V_CODE)
+);
+CREATE TABLE LAB_CUSTOMER (
+    CUS_CODE INTEGER PRIMARY KEY,
+    CUS_LNAME VARCHAR(30) NOT NULL
+);
+CREATE TABLE LAB_PRICE_AUDIT (
+    P_CODE VARCHAR(10) NOT NULL,
+    OLD_PRICE NUMERIC(8, 2),
+    NEW_PRICE NUMERIC(8, 2),
+    ACTION VARCHAR(6) NOT NULL
+);
+INSERT INTO LAB_VENDOR VALUES
+    (10, 'Acme Tools', 'TN'),
+    (20, 'North Supply', 'ND'),
+    (30, 'River Hardware', 'TN'),
+    (40, 'Unused Supply', 'ND');
+INSERT INTO LAB_PRODUCT VALUES
+    ('P1','Pen',DATE '2026-09-30',100,20,2,0,10),
+    ('P2','Drill',DATE '2026-10-01',2,5,45,.10,10),
+    ('P3','Hand saw',DATE '2026-10-11',8,3,30,.05,20),
+    ('P4','Chain saw',DATE '2026-10-31',0,2,100,0,NULL),
+    ('P5','Hammer',DATE '2026-11-01',6,4,20,0,30),
+    ('P6','Saw blade',DATE '2026-10-15',4,4,30,0,20),
+    ('0012','  Rat-tail file  ',DATE '2026-01-01',3,5,10,0,30);
+COMMIT;

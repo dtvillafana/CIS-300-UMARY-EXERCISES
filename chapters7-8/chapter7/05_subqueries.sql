@@ -17,10 +17,10 @@ ORDER BY v.V_CODE; -- 10,20,30 once each.
 --   (P2,P5). Explain why NULL vendor P4 does not match q.V_CODE=p.V_CODE.
 -- TASK 7.5f: NOT EXISTS: vendors with no products (40). Compare with
 --   NOT IN(SELECT V_CODE FROM product): NULL makes that return no rows.
--- TASK 7.5g: demonstrate zero-row scalar result (NULL). In Oracle, a
+-- TASK 7.5g: demonstrate zero-row scalar result (NULL). In PostgreSQL, a
 --   multirow scalar is an error; SQLite instead takes its first row.
 --   Why must portable scalar queries guarantee at most one row?
--- DIALECT TASK: complete oracle/01_dialects.sql for > ALL, > ANY/SOME,
+-- DIALECT TASK: complete postgres/01_dialects.sql for > ALL, > ANY/SOME,
 --   = ANY, empty sets, and NULLs. SQLite has no ALL/ANY comparison syntax.
 -- REFLECT: "inner query first"/"once per row" are reasoning models, not
 --   promises about the optimizer's physical execution order.
