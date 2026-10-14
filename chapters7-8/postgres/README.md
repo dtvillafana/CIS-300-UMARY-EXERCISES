@@ -13,12 +13,53 @@ creates four `lab_*` tables without dropping anything; existing names cause
 an error. It does not copy the entire SQLite model. Baseline: four vendors,
 seven products, no customers or audit rows.
 
-From `chapters7-8/`, with an authorized local PostgreSQL server available:
+### Graphical route (recommended for students)
+
+No Nix or terminal is required. Install/connect using the
+[student setup guide](../../STUDENT_SETUP.md#4-connect-pgadmin-to-postgresql),
+then open **pgAdmin → cis300_lab → Query Tool**. This also works with an
+instructor-hosted PostgreSQL server.
+
+1. Check that the Query Tool is connected to your **empty disposable lab
+   database**, not the maintenance database `postgres` or someone else's lab.
+2. Set **Auto commit ON** and **Auto rollback OFF** in the Query Tool's
+   execution options. Explicit `BEGIN`/`ROLLBACK` statements in the lessons
+   control each experiment. Turn off automatic transaction wrapping if your
+   editor offers it. Button names/locations vary with pgAdmin version.
+3. Use **Open File** to open `postgres/setup.sql` from this exercise folder.
+   Run that entire file once; it contains its own `BEGIN` and `COMMIT`.
+   In hosted/browser pgAdmin, upload the SQL file through the file dialog
+   if offered, or copy its contents into the editor. Local computer paths
+   are not necessarily accessible to the hosted server.
+4. Open `postgres/01_dialects.sql`. Select and execute **one complete SQL
+   statement at a time** using **Execute script**, in order, inspecting the
+   result grid each time.
+5. Open `postgres/02_plpgsql.sql`. A `DO $$ ... $$;` block or a
+   `CREATE ... AS $$ ... $$;` definition is **one complete statement**:
+   select the entire block, not just the line the cursor is on. Notices
+   appear in the **Messages** panel, not the result grid.
+6. For rollback experiments, execute `BEGIN;`, then each statement, then
+   `ROLLBACK;` in the **same Query Tool tab/connection**. Inspect the changes
+   before rolling back. Do not execute the whole lesson/answer file as one
+   GUI selection: that can change transaction boundaries or hide results.
+7. Write your answers in a new `.sql` file. Only afterward, compare with
+   `solutions/postgres.sql`, running its statements/blocks in order too.
+
+After an intentional error inside a transaction, run `ROLLBACK;` separately
+before continuing. To restart from baseline, create a new empty lab database
+and run the setup and lessons once each. Setup does not reset an existing lab.
+
+### Command-line alternative (optional)
+
+If you already use PostgreSQL's command-line tools, run from `chapters7-8/`
+with a server available. These single-line commands work in common Windows,
+macOS, and Linux shells; use the host/user options required by your server.
+On Windows, if the tools are not on PATH, use pgAdmin's **PSQL Tool** instead
+(see the check instructions below) or stay with the graphical route.
 
 ```sh
 createdb cis300_lab
-psql -X -v ON_ERROR_STOP=1 -d cis300_lab \
-  -f postgres/setup.sql -f postgres/01_dialects.sql -f postgres/02_plpgsql.sql
+psql -X -v ON_ERROR_STOP=1 -d cis300_lab -f postgres/setup.sql -f postgres/01_dialects.sql -f postgres/02_plpgsql.sql
 ```
 
 Predict each example, run it, then write PA1–PA8 and PB1–PB6 yourself.
@@ -35,37 +76,30 @@ worked file keeps them together. PA1/PA2 remain write-and-explain tasks:
 do not create accounts or grant real permissions. Expected-error statements
 are commented out; run each separately and finish with `ROLLBACK`.
 
-## Optional private local server (no system service needed)
-
-The repository's `nix develop` provides PostgreSQL server/client tools. To
-start an isolated cluster with a private Unix socket and **no TCP listener**:
-
-```sh
-nix develop                       # from the repository root
-cd chapters7-8
-export PGHOST="$(mktemp -d /tmp/opencode/cis300-pg.XXXXXX)"
-export PGDATA="$PGHOST/data"
-initdb --auth-local=trust --auth-host=reject --no-locale --encoding=UTF8
-pg_ctl -l "$PGHOST/server.log" -o "-k $PGHOST -c listen_addresses=''" start
-createdb cis300_lab
-# Now run the psql commands above.
-```
-
-The `mktemp` directory is private to your user; local trust is appropriate
-only for this isolated lab. Outside this environment, choose an existing
-private temporary parent instead of `/tmp/opencode`. When finished, stop
-only this cluster with `pg_ctl stop`. Keep the directory to resume later;
-for a fresh exercise, create a new disposable database or cluster rather
-than rerunning setup over existing objects. Do not commit cluster files.
-
 ## Validate the supplied PostgreSQL examples and answers
 
-Use another **empty** disposable database (not the one you practiced in):
+These checks are optional unless assigned. Use another **empty** disposable
+database (not the one you practiced in). With command-line tools:
 
 ```sh
 createdb cis300_check
 psql -X -v ON_ERROR_STOP=1 -d cis300_check -f postgres/check.sql
 ```
+
+Alternatively, create/select `cis300_check` in pgAdmin and choose
+**Tools → PSQL Tool** if available. This opens a `psql` session, not the
+graphical Query Tool. Enter the file's full path with forward slashes and
+single quotes, for example on Windows:
+
+```text
+\i 'C:/Users/YourName/Documents/CIS-300-UMARY-EXERCISES/chapters7-8/postgres/check.sql'
+```
+
+On macOS/Linux, use your extracted folder's full path instead. Do **not**
+paste `check.sql` into the graphical Query Tool: `\ir`, `\set`, and `\echo`
+are `psql` commands, not SQL. In hosted/browser pgAdmin, PSQL Tool may be
+disabled or its filesystem may be on the server; ask the instructor to run
+the checks there rather than assuming your computer's file path will work.
 
 This executes setup, both companions, the answer key, and SQL assertions
 for NULL/empty quantifiers, transactions, sequences, views, constraints,

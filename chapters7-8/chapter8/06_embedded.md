@@ -1,8 +1,22 @@
 # 8.6 — SQL in a host language
 
 **Goal:** bridge SQL rows, host variables, NULLs, diagnostics, and transaction
-boundaries. Read `embedded.py`, then run `python3 -m unittest test_embedded.py`.
-The examples use Python's built-in SQLite driver; they do not require a server.
+boundaries. Unlike the SQL-only lessons, this lesson runs Python in a terminal,
+not in DB Browser's **Execute SQL** tab. Install Python using the
+[student setup guide](../../STUDENT_SETUP.md#optional-python-lab); Nix is
+optional. From the repository root:
+
+```sh
+cd chapters7-8
+python3 -m unittest test_embedded.py
+```
+
+On Windows, use `py -m unittest test_embedded.py` instead.
+
+Read `embedded.py`. The examples use Python's built-in SQLite driver and fresh
+in-memory databases; they do not require a server or modify the `lab.sqlite3`
+file open in DB Browser. Inspect the equivalent SQL in DB Browser if helpful,
+but do not paste Python or the C example below into its SQL editor.
 
 ## Worked example
 

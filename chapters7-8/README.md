@@ -8,35 +8,63 @@ the textbook's full sample database.
 
 ## Start here
 
-Use **SQLite 3.39 or later** (RIGHT/FULL JOIN support). Work only in this
-directory and in your own disposable lab database; do not run these files
-against a work or production database. The existing `week3/` is untouched.
+Use **DB Browser for SQLite** (`sqlitebrowser`) for these SQLite lessons,
+with **SQLite 3.39 or later** (RIGHT/FULL JOIN support). Work only in your own
+disposable lab database; do not run these files against a work or production
+database. The existing `week3/` is untouched.
 
-```sh
-cd chapters7-8
-sqlite3 lab.sqlite3 ".read load.sql"
-sqlite3 lab.sqlite3 ".read chapter7/01_select.sql"
-```
+Install DB Browser for SQLite using the [student setup guide](../STUDENT_SETUP.md),
+then open it from your application menu. Windows, macOS, and Linux are supported;
+Nix and a terminal are not required. Downloading and extracting the repository
+ZIP is sufficient; Git is optional.
 
-If SQLite is not installed, use `nix shell nixpkgs#sqlite -c sqlite3 ...`.
-In a graphical SQL editor, execute `setup.sql` first, then individual SQL
-statements from a lesson. `.read`, `.headers`, `.mode`, and `.nullvalue` are
-SQLite CLI commands, not SQL; do not paste `load.sql` into another DBMS.
-Enable `PRAGMA foreign_keys = ON` on **every SQLite connection**.
+1. Click **New Database** and save it as `chapters7-8/lab.sqlite3`. Cancel
+   the initial table-creation dialog; the setup script creates the tables.
+2. In **Execute SQL**, open `chapters7-8/setup.sql` using **Open SQL file**
+   and execute the entire script. Click **Write Changes** to save the setup.
+3. Open `chapters7-8/chapter7/01_select.sql` in **Execute SQL**. Select one
+   complete statement (including its semicolon) and execute the selection.
+   Inspect the result grid before running the next example. **Browse Data**
+   lets you inspect individual tables; **Database Structure** shows their definitions.
+4. On every database open/reopen, with no pending transaction, execute:
 
-`load.sql` destroys and rebuilds only the lab's named objects. Rerun it before
-each Chapter 8 lesson or answer-key file. Chapter 7 lessons are read-only.
-Do not commit generated database files.
+   ```sql
+   PRAGMA foreign_keys = ON;
+   PRAGMA foreign_keys;
+   SELECT sqlite_version();
+   ```
+
+   Run these individually: the foreign-key query must return `1`, and the
+   version must be at least `3.39.0`. Enabling foreign keys inside an active
+   transaction has no effect; finish or revert pending changes first.
+
+Use `setup.sql`, **not `load.sql`**, in DB Browser. `.read`, `.headers`,
+`.mode`, and `.nullvalue` are SQLite CLI commands, not SQL; the result grid
+replaces CLI output formatting.
+
+`setup.sql` destroys and rebuilds only the lab's named objects. Finish or
+revert pending changes, then rerun the whole setup and click **Write Changes**
+before each Chapter 8 lesson or answer-key file. Chapter 7 lessons are read-only.
+Do not commit generated database files or their journal/WAL files.
 
 ## How to practice
 
 1. Read the goal and predict the worked example's result before running it.
-2. Run the example; explain what one output row represents.
+2. In **Execute SQL**, select and run each worked statement; explain what
+   one row in the result grid represents. Run related transaction statements
+   in order on the same connection.
 3. Write the numbered tasks in your own `.sql` file. The task comments are
    deliberately not executable blanks: each lesson can run unchanged.
 4. Check the stated row counts, boundary cases, and NULL behavior.
 5. Compare with `solutions/chapter7.sql` or `solutions/chapter8.sql` only
-   after attempting the task. PostgreSQL answers are in `solutions/postgres.sql`.
+    after attempting the task. PostgreSQL answers are in `solutions/postgres.sql`.
+
+For transaction lessons, start with no pending GUI edits. Use the lesson's
+SQL `BEGIN`, `COMMIT`, and `ROLLBACK` statements to control the experiment;
+do not click **Write Changes** in the middle of a rollback demonstration.
+If an expected error interrupts a transaction, run `ROLLBACK;` before resetting
+or continuing. Execute commented-out failure examples individually, not as
+part of a whole-file batch.
 
 ## Lesson order
 
@@ -88,9 +116,11 @@ sales on September 30, October 1/31, and November 1, 2026.
 The runnable core follows the existing repository's SQLite approach.
 [`postgres/`](postgres/README.md) supplies **PostgreSQL/PL/pgSQL practice**,
 not SQLite-compatible code. It replaces the Oracle companions with the same
-guided concepts and data. Its README includes setup, a private local server,
+guided concepts and data. Its README includes graphical and terminal setup,
 checks, and a slide-syntax translation table. Only use a disposable database.
 The slides' Oracle-specific spellings are compared, not required to run.
+DB Browser for SQLite cannot run these companions; use their documented
+PostgreSQL tools instead.
 
 - SQLite has no `CREATE SCHEMA AUTHORIZATION`, `GRANT`/`REVOKE`, independent
   sequences, `ALL`/`ANY`, or stored procedures/functions. Do the PostgreSQL
@@ -120,10 +150,17 @@ The slides' Oracle-specific spellings are compared, not required to run.
 
 ## Check the supplied examples and answers
 
+These optional automated checks run in a terminal, not the DB Browser SQL
+editor. Install Python using the [student setup guide](../STUDENT_SETUP.md#optional-python-lab),
+or use the optional Nix developer shell. From the repository root:
+
 ```sh
+cd chapters7-8
 python3 check.py
 python3 -m unittest test_embedded.py
 ```
+
+On Windows, use `py` instead of `python3` for both commands.
 
 Checks use fresh in-memory databases, enable foreign keys, execute all
 SQLite lessons and answer keys, and verify important expected results,
