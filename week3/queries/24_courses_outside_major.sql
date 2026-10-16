@@ -1,4 +1,7 @@
 -- View: students taking a course outside their major
+-- Business question: Which recorded enrollments are outside the student's
+-- declared major, and what are the major and course department? Exclude
+-- undeclared students because an outside-major comparison is not defined.
 -- Join students to enrollments to courses, then compare the two
 -- department keys. Elena is undeclared (major_id NULL) so she is
 -- excluded by the WHERE clause.

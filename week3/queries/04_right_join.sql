@@ -1,4 +1,7 @@
 -- RIGHT OUTER JOIN  (RIGHT JOIN)
+-- Business questions:
+-- 1. Who teaches in each department, including departments with no faculty?
+-- 2. Who is enrolled in each course and with what grade, including empty courses?
 -- Keep every row from the right table. If the left side has no match,
 -- left-hand columns are NULL.
 --

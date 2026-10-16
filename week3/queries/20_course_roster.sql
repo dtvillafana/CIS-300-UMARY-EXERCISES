@@ -1,4 +1,7 @@
 -- View: class roster
+-- Business question: For each actual enrollment, who is the student, what
+-- course, semester, and grade are recorded, and who teaches it? Retain
+-- enrollments in courses without an assigned instructor; omit empty courses.
 -- For each course, who is enrolled and who teaches it.
 -- Uses INNER JOIN for students (only real enrollments) and LEFT JOIN
 -- for instructor so CS490 still appears if someone is in it.

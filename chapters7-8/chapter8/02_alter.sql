@@ -28,15 +28,23 @@ COMMIT;
 SELECT * FROM part ORDER BY PART_CODE;
 ALTER TABLE part DROP COLUMN PART_NOTE;
 
+-- Business question: How can existing parts gain a discount field with every
+--   current part initially receiving no discount?
 -- TASK 8.2a: add nullable PART_DISCOUNT, backfill 0, verify no missing values.
+-- Business question: How can we require valid discounts from 0% to 100%
+--   without losing existing parts or weakening their other integrity rules?
 -- TASK 8.2b: rebuild part with PART_DISCOUNT NOT NULL DEFAULT 0 CHECK 0..1;
 --   retain PK/FK/price CHECK and both rows. Validate counts/FKs before COMMIT.
 --   Do not disable foreign keys to hide errors. General parent-table rebuilds
 --   also need a plan for incoming FKs, indexes, views, and triggers.
+-- Business question: How can an existing PostgreSQL parts catalog adopt new
+--   types and integrity rules without accepting or hiding invalid legacy data?
 -- TASK 8.2c: write PostgreSQL ALTER COLUMN TYPE, ADD PRIMARY KEY,
 --   ADD FOREIGN KEY, ADD CHECK, and DROP CONSTRAINT (Postgres A, PA6).
 --   Profile duplicates, orphans, invalid numeric text, NULLs, and too-long
 --   descriptions before changing a populated table's characteristics.
+-- Business question: When retiring a catalog field or a temporary catalog,
+--   which operation removes structure rather than just clearing records?
 -- TASK 8.2d: create a disposable part copy, DROP one column, DROP the table.
 --   Contrast DROP TABLE, DROP COLUMN, and DELETE FROM; which loses structure?
 -- REFLECT: adding NOT NULL with a default may be legal; doing it without

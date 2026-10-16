@@ -1,4 +1,9 @@
 -- Cardinality: many-to-one  (instructors >── 1 departments)
+-- Business questions:
+-- 1. In which department and building does each assigned instructor work?
+-- 2. What is every instructor's department, including unassigned instructors,
+--    and does the lookup preserve one row per instructor?
+-- 3. What is each student's declared major, including undeclared students?
 --
 -- This is the same relationship as 11_one_to_many.sql, read from the
 -- child side. Each instructor contributes at most one row. The parent

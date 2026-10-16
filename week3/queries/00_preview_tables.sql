@@ -1,5 +1,7 @@
 -- Look at every table by itself before joining anything.
 -- Run this first so the later join results make sense.
+-- Business question: What departments, instructors, students, ID cards,
+-- courses, and enrollments are currently recorded in the university system?
 --
 --   sqlite3 demo.sqlite3 ".read queries/00_preview_tables.sql"
 

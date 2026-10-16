@@ -1,4 +1,9 @@
 -- Cardinality: many-to-many  (students M ──< enrollments >── N courses)
+-- Business questions:
+-- 1. What actual student-course enrollments, semesters, and grades are recorded?
+-- 2. What is every student's recorded course list, including students with none?
+-- 3. What is every course's roster, including courses with no students?
+-- Use enrollment counts, not all possible pairings, to validate the report.
 --
 -- SQL has no direct M:N join. You store it as a link table and join
 -- twice. Both sides can fan out:

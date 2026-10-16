@@ -1,4 +1,8 @@
 -- Self-join
+-- Business questions:
+-- 1. Which assigned mentor supports each mentee?
+-- 2. What is every student's mentor assignment, including unassigned students?
+-- 3. Which mentees is each active mentor responsible for?
 -- Join a table to itself. Needed when a row points at another row in
 -- the same table.
 --

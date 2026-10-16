@@ -7,14 +7,22 @@ FROM product ORDER BY P_CODE;
 SELECT ABS(-7) AS Magnitude, ROUND(19.956, 2) AS Rounded,
        CAST('19.95' AS NUMERIC) AS NumericPrice;
 
+-- Business question: How should product names and code/name labels be
+--   standardized for a catalog export without changing stored descriptions?
 -- TASK 7.6a: return lowercase trimmed descriptions and replace 'saw'
 --   with 'SAW'; concatenate code || ': ' || trimmed description.
+-- Business question: What receipt year/month and one-month follow-up date
+--   should inventory staff see, and how should a report timestamp display?
 -- TASK 7.6b: date/time functions: get receipt year/month with strftime,
 --   add one month with date, and display a fixed timestamp with datetime.
 --   Also run PostgreSQL EXTRACT(YEAR FROM P_INDATE) in Postgres A (PA4).
+-- Business question: Can we safely format prices as text for export and
+--   treat incoming price text as valid simply because a cast succeeds?
 -- TASK 7.6c: CAST P_PRICE AS TEXT and inspect typeof before/after; cast
 --   'not a number' AS NUMERIC (SQLite returns 0, not a validation error).
 --   Why is casting not adequate input validation?
+-- Business question: What date is ten days after October 1, 2026, and how
+--   many days elapsed from October 1 to October 11?
 -- TASK 7.6d: compare date('2026-10-01','+10 days') with julianday date
 --   subtraction (2026-10-11 and 10). Which returns a date versus a number?
 -- REFLECT: the slide references textbook function tables without listing

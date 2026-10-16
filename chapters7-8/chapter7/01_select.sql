@@ -18,14 +18,23 @@ SELECT P_CODE, date(P_INDATE, '+7 days') AS ReviewDate,
 FROM product ORDER BY P_CODE;
 SELECT DISTINCT V_CODE FROM product ORDER BY V_CODE;
 
+-- Business question: What items and current prices belong on our price list?
 -- TASK 7.1a: return code, description, price only, sorted by code (7 rows).
+-- Business question: What are each item's stock gap, restock target, stock
+--   value, and proposed promotional price?
 -- TASK 7.1b: use +, -, *, / and parentheses to return each product's
 --   stock gap (P_MIN - P_QOH), restock target (P_MIN + 2), inventory value,
 --   and 10% discounted price using (100 - 10) / 100.0. Do not update values.
+-- Business question: Which suppliers currently supply products, and which
+--   distinct price points occur within each supplier's products?
 -- TASK 7.1c: return distinct assigned vendor codes, excluding NULL (10,20,30).
 --   Then add P_PRICE: why does DISTINCT now yield five vendor/price pairs?
+-- Business question: How many units fit in a cube with two units per side,
+--   and how can we calculate that consistently across database systems?
 -- TASK 7.1d: compute 2 cubed by multiplication; compare the written
 --   POWER(2,3) function in PostgreSQL. Explain why ^ and ** are not portable.
+-- Business question: When is P2's 30-day receipt review due, and how old
+--   was its receipt on October 11, 2026?
 -- TASK 7.1e: find P2's receipt date plus 30 days and days from its receipt
 --   to 2026-10-11 (2026-10-31 and 10). Do not subtract ISO strings directly.
 -- REFLECT: SELECT is DML here; CREATE is DDL, COMMIT is TCL, GRANT is DCL.

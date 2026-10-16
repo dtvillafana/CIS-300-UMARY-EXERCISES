@@ -1,4 +1,9 @@
 -- FULL OUTER JOIN
+-- Business questions:
+-- 1. What is the complete department/faculty reconciliation, retaining both
+--    empty departments and instructors without department assignments?
+-- 2. What is the complete student/card reconciliation, retaining every student
+--    and every card even if either side lacks a match?
 -- Keep rows from both sides, whether they match or not.
 -- Unmatched left rows get NULL on the right; unmatched right rows get
 -- NULL on the left.

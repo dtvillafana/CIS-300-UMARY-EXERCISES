@@ -1,4 +1,7 @@
 -- View: unmatched rows  (anti-join)
+-- Business questions: Which students lack ID cards? Which have no enrollments?
+-- Which courses have no students? Which instructors teach no courses?
+-- Which departments have no instructors? These are follow-up lists for staff.
 -- A LEFT JOIN plus WHERE right.id IS NULL finds rows with no match.
 -- This is how you ask "who has none of X?" — gaps such as missing
 -- cards, students with no schedule, empty courses, idle instructors.

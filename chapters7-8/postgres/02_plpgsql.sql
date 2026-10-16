@@ -66,23 +66,35 @@ END;
 $$;
 -- Prints 0012:3, P2:2, P4:0, once each; block/transaction end closes cursors.
 
+-- Business question: How should a product-price lookup handle a missing or
+--   nonunique match instead of returning a misleading price to staff?
 -- TASK PB1: find missing P9 and handle NO_DATA_FOUND; demonstrate
 --   TOO_MANY_ROWS for nonunique SELECT INTO STRICT. Contrast non-STRICT
 --   SELECT INTO (NULL/no row, first row/multiple rows). What does %TYPE
 --   inherit, and which NOT NULL/CHECK rules does it NOT inherit?
+-- Business question: Can a reusable supplier-price operation apply a 10%
+--   increase, reject invalid requests, and let the caller cancel the change?
 -- TASK PB2: BEGIN; call the procedure for vendor 10, .10, verify 2.20/49.50
 --   then ROLLBACK. Test fraction -1, NULL, and vendor 40 errors separately.
 --   Explain shared logic, persistent modules, fewer round trips, commit ownership.
+-- Business question: How can a row-by-row low-stock review know how many
+--   items it processed and when no further items remain?
 -- TASK PB3: trace closed / just opened / three successful fetches / exhausted
 --   fetch / closed again. Record FOUND and w_count after FETCH; inspect
 --   pg_cursors for open state. Compare Oracle %ISOPEN/%ROWCOUNT/%FOUND/
 --   %NOTFOUND: PostgreSQL has no per-cursor versions of these attributes.
+-- Business question: How can inventory raise the minimum stock target for
+--   every currently low-stock item and verify exactly how many were affected?
 -- TASK PB4: one set-based UPDATE increases low-stock P_MIN by 1. Use
 --   GET DIAGNOSTICS w_count = ROW_COUNT (3), then ROLLBACK. Contrast DML
 --   diagnostics with explicit multirow fetch control. Read FOUND promptly.
+-- Business question: How can every product's discounted price be calculated
+--   consistently in reports without modifying stored catalog prices?
 -- TASK PB5: call LAB_DISCOUNTED_PRICE per product in SELECT; explain function
 --   vs procedure and RETURN. Why is IMMUTABLE accurate here but not for a
 --   function that reads changing table data? Functions cannot COMMIT/ROLLBACK.
+-- Business question: How can PostgreSQL record each product addition, price
+--   edit, and removal, retaining audit entries only for committed changes?
 -- TASK PB6: one AFTER INSERT OR UPDATE OR DELETE row-level audit trigger
 --   calls a RETURNS TRIGGER function using TG_OP and OLD/NEW (no colons).
 --   Insert T1, update its price, delete it; verify three audit rows;

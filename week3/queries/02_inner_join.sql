@@ -1,4 +1,8 @@
 -- INNER JOIN
+-- Business questions:
+-- 1. Which assigned instructors work in each department?
+-- 2. Which students have an ID card, and what is the card number?
+-- 3. Who actually took each course, in which semester, and with what grade?
 -- Keep only rows that have a match on both sides.
 -- Unmatched rows disappear: Jordan (no dept), Music (no instructors),
 -- Elena (no major) will not show up in these results.

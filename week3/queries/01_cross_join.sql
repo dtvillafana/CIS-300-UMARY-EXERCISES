@@ -1,4 +1,7 @@
 -- CROSS JOIN
+-- Business question: What are all possible student-course pairings for
+-- planning, how many are there, and how many are actual enrollments?
+-- Possible pairings must not be reported as a real class roster.
 -- Pair every row on the left with every row on the right.
 -- There is no join condition, so the result is a cartesian product.
 --

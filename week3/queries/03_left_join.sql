@@ -1,4 +1,9 @@
 -- LEFT OUTER JOIN  (LEFT JOIN)
+-- Business questions:
+-- 1. What is every instructor's department, including unassigned instructors?
+-- 2. Who teaches in each department, including departments with no faculty?
+-- 3. What is every student's ID-card status, including students without cards?
+-- 4. What courses and grades does every student have, including those with none?
 -- Keep every row from the left table. If the right side has no match,
 -- right-hand columns are NULL.
 --

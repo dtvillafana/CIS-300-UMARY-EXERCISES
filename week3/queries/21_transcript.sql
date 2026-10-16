@@ -1,4 +1,7 @@
 -- View: student transcripts
+-- Business question: What course, credits, semester, grade, major, and
+-- instructor belong on each student's recorded transcript? Retain undeclared
+-- students and missing instructors, but omit students with no enrollments.
 -- One row per enrollment, with major, course, instructor, and grade.
 -- LEFT JOIN major and instructor so undeclared students and CS490 still
 -- print. Grace has no enrollments, so she is absent (inner on enrollments).

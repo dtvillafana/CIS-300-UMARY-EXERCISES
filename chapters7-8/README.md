@@ -39,7 +39,10 @@ before each Chapter 8 lesson or answer-key file. Chapter 7 lessons are read-only
 
 ## How to practice
 
-1. Read the goal and predict the worked example's result before running it.
+1. Read the goal and each task's **Business question**. State what decision
+   or operational need the result supports, then predict the worked example's
+   result before running it. Schema and procedural tasks express the business
+   rule or operational requirement to implement rather than a reporting query.
 2. In **Execute SQL**, select and run each worked statement; explain what
    one row in the result grid represents. Run related transaction statements
    in order on the same connection.

@@ -1,4 +1,7 @@
 -- ON vs WHERE with a LEFT JOIN
+-- Business questions:
+-- 1. What A-grade enrollments does each student have, retaining students with none?
+-- 2. Which students actually earned an A, and in which courses?
 -- Filters in ON happen while matching. Filters in WHERE happen after
 -- the join, and will throw away unmatched left rows (turning a LEFT
 -- JOIN into an INNER JOIN by accident).

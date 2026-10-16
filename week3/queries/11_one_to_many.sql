@@ -1,4 +1,8 @@
 -- Cardinality: one-to-many  (departments 1 ──< instructors)
+-- Business questions:
+-- 1. Who staffs each department, first omitting and then retaining empty ones?
+-- 2. What courses does each instructor teach, including instructors with none?
+-- Compare table counts with report rows to explain repeated departments.
 --
 -- Starting from the "one" side, a matching "many" fans a parent row
 -- out into several result rows. CS has two instructors, so CS appears

@@ -1,4 +1,9 @@
 -- NATURAL JOIN and JOIN ... USING
+-- Business question: Who is enrolled in each course and with what grade,
+-- when the source extracts use shared key names? The USING and wrapped
+-- NATURAL examples answer this question. The middle query is a deliberate
+-- counterexample: do shared IDs and names establish a student/instructor
+-- relationship? They do not; do not use that match as a university report.
 -- Both are inner joins that match on column *names* instead of an ON
 -- clause. They are easy to get wrong, which is the point of this file.
 

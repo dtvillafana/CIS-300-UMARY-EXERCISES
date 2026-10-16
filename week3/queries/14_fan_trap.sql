@@ -1,4 +1,7 @@
 -- Fan trap: two independent 1:N relationships share a parent.
+-- Business question: Which Computer Science majors are actually enrolled in
+-- Computer Science courses, and in which semesters? Compare the false roster
+-- inferred from majors with the roster supported by enrollment records.
 --   students N >── 1 departments 1 ──< N courses
 -- A student's major and a course's department do NOT establish enrollment.
 -- Joining these branches pairs every major with every departmental course.

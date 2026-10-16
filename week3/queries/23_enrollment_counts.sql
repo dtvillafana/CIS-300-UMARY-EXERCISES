@@ -1,4 +1,10 @@
 -- View: counts that depend on join cardinality
+-- Business questions:
+-- 1. How many recorded enrollments does each course have, including zero?
+-- 2. How many recorded enrollments does each student have, including zero?
+-- 3. How many instructors staff each department, including zero, and which
+--    staffing gaps disappear if the report includes only staffed departments?
+-- Counts cover all recorded semesters, not a single current-term schedule.
 -- LEFT JOIN + GROUP BY keeps zeros. INNER JOIN + GROUP BY hides them.
 
 .headers on

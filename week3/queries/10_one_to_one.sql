@@ -1,4 +1,7 @@
 -- Cardinality: one-to-one  (students 1 ── 1 id_cards)
+-- Business question: Which students have cards, what are their numbers and
+-- issue dates, and which students still need cards? Check student/card counts
+-- to verify that the card-status report does not duplicate students.
 --
 -- UNIQUE(student_id) means a student has at most one card, and each
 -- card belongs to one student. Joining never duplicates a student.
