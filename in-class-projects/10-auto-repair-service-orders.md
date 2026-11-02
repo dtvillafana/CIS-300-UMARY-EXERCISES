@@ -1,0 +1,43 @@
+# Auto Repair Service Orders
+
+## Your client
+
+An auto repair shop needs to record service orders, preserve vehicle repair
+history, and summarize mechanics' labor activity.
+
+## What the system must track
+
+- Customers and their contact information.
+- Vehicles, each with a unique VIN, make, model, model year, and one current owner
+  from the customer records.
+- Mechanics and their contact information.
+- A catalog of repair services, each with a name and description.
+- Service orders, each for one vehicle and assigned to one lead mechanic, with
+  an opening date, optional closing date, and mileage at intake.
+- The services on each order, including labor hours and the hourly rate charged
+  for each service.
+
+## Scope and business rules
+
+A vehicle may have many service orders. An order may include several services,
+but each catalog service appears at most once per order. No closing date means
+the order is open. Preserve recorded hours and rates for historical reporting.
+Count labor revenue only for closed orders. Vehicle ownership does not change
+during this project. Parts, taxes, payments, and additional mechanics per order
+are outside scope.
+
+## Suggested SQL reports
+
+1. **Vehicle service history:** Show a vehicle's owner, service order dates,
+   lead mechanics, services, labor hours, and calculated labor charges.
+2. **Monthly mechanic summary:** Show total labor hours and labor revenue by
+   mechanic for orders closed during a selected month.
+3. **Open service orders:** Show open orders with customer contact information,
+   vehicle details, lead mechanic, and opening date.
+
+## Start here
+
+Which facts describe a catalog service, and which describe work performed on one
+vehicle? How will you calculate labor charges without storing redundant totals?
+
+Follow the [shared assignment and submission requirements](README.md#your-assignment).
