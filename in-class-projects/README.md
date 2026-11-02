@@ -77,7 +77,7 @@ SQL reports.
 - A SQL file containing your labeled report queries.
 - Report results, either exported or captured in screenshots, with a brief
   explanation of what each report tells its intended user.
-- essentially, I should be able to reproduce your entire setup and run the reports from the scripts you submit
+- Essentially, I should be able to reproduce your entire setup and run the reports from the scripts you submit
 
 ## Getting started
 
