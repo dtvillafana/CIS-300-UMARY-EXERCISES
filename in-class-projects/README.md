@@ -28,16 +28,12 @@ SQL reports.
 ### 1. Design the database
 
 - Identify the entities, attributes, and business rules.
-- Create an entity-relationship diagram (ERD) showing primary keys, foreign keys,
-  relationship cardinalities, and optional relationships.
+- (Optional) Create an entity-relationship diagram (ERD) showing primary keys, foreign keys, relationship cardinalities, and optional relationships.
 - Design **4–7 tables in 3NF**, resolving many-to-many relationships with junction
   tables where needed.
 - Provide a data dictionary describing each column, its data type, and its
   constraints.
-- Briefly explain how your design satisfies 1NF, 2NF, and 3NF. Identify relevant
-  functional dependencies rather than only stating that the tables are normalized.
-- Document any assumptions you make. Keep them consistent with the project's
-  stated scope.
+- Document any assumptions you make that determine how you design the schema. Keep them consistent with the project's stated scope.
 
 ### 2. Implement and populate the database
 
@@ -77,11 +73,11 @@ SQL reports.
 ### 4. Submit your work
 
 - Your chosen project title and documented assumptions.
-- ERD, data dictionary, and normalization explanation.
 - Table-creation and sample-data SQL scripts.
 - A SQL file containing your labeled report queries.
 - Report results, either exported or captured in screenshots, with a brief
   explanation of what each report tells its intended user.
+- essentially, I should be able to reproduce your entire setup and run the reports from the scripts you submit
 
 ## Getting started
 
