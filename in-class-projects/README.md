@@ -1,7 +1,7 @@
 # Database Design Projects
 
 Choose one project below. Each project is designed for a database with **4–7
-tables in third normal form (3NF)** and **2–3 SQL reports that join related
+tables in third normal form (3NF)** and **3 SQL reports that join related
 tables**. The descriptions specify business needs, not a finished schema: deciding
 how to organize the data is part of your assignment.
 
@@ -55,11 +55,20 @@ SQL reports.
 
 ### 3. Write the reports
 
-- Write **2–3 SQL report queries**. Each project includes three suggested reports;
-  choose two or three, or propose alternatives that meet the same requirements.
+- Write **3 SQL report queries total**: your project's required analytical report
+  and both suggested additional reports. You may propose alternatives for the
+  additional reports, but the required analytical report must be included.
 - Every report must join at least two tables, and at least one must join three or
   more tables.
-- At least one report must use an aggregate function and `GROUP BY`.
+- The required analytical report must answer the business question in your project
+  description. Present the requested summary measures at the specified level of
+  detail, rather than listing individual transactions. Keep different people,
+  items, or organizations separate even if they share a name.
+- Include sample data covering at least two of the entities or categories being
+  compared, with multiple contributing records for at least one. Follow any
+  additional sample-data requirements in your project description.
+- Explain what the required report reveals and verify at least one summary's
+  calculated results by hand against your sample data.
 - Give output columns clear names and use an appropriate `ORDER BY`.
 - Document any date range or other filter used by each report.
 - Check that your joins do not accidentally duplicate totals. For reports about

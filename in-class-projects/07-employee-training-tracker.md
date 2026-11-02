@@ -24,14 +24,23 @@ particular session. Only completed enrollments earn the course's training hours.
 Scores range from 0 to 100 when recorded. Reports use employees' current
 departments; department transfer history and instructor payroll are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Department training outcomes:** For sessions occurring during a selected date
+range, show one row per current department with its name, total enrollment count,
+completed enrollment count, and total completed training hours. Sort by completed
+training hours, highest first, to compare department training activity. Count hours
+only for completed enrollments. Include only departments with enrollments in the
+date range, displaying zero completed hours if none were completed. Sample data
+must include completed and incomplete enrollments, a department with no completed
+enrollments, and courses with different training-hour values.
+
+## Additional SQL reports (Complete both)
 
 1. **Employee training hours:** Show total completed training hours by employee
    and current department during a selected session date range.
 2. **Session roster:** Show a session's course, instructor, enrolled employees,
    departments, completion statuses, and scores.
-3. **Department participation:** Show enrollment and completion counts by
-   department and course for a selected session date range.
 
 ## Start here
 

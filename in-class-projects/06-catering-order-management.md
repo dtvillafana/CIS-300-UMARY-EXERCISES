@@ -24,13 +24,21 @@ appears at most once per order. Preserve agreed prices independently of current
 menu prices. Orders are not canceled in this project. Ingredient inventory,
 staff scheduling, taxes, delivery charges, and payment processing are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Menu category sales performance:** For events occurring during a selected month,
+show one row per menu category with its name, total servings ordered, number of
+distinct event orders containing its items, and sales value. Sort by sales value,
+highest first, to compare category demand. Calculate sales value from quantities
+and agreed unit prices. Include an event order with two items from the same
+category in your sample data; it must
+count only once toward that category's event order count.
+
+## Additional SQL reports (Complete both)
 
 1. **Upcoming event preparation list:** Show events in a selected date range with
    customer, coordinator, delivery address, menu items, and required servings.
-2. **Menu category sales:** Show total servings and sales value by menu category
-   for events in a selected month.
-3. **Coordinator event summary:** Show event counts and total order value by
+2. **Coordinator event summary:** Show event counts and total order value by
    coordinator for a selected event date range.
 
 ## Start here

@@ -24,13 +24,22 @@ requests. No completion date means the request is still open. Resident details
 are a snapshot supplied with the request, not a resident directory. Lease
 management, technician teams, work logs, and parts inventory are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Maintenance resolution performance:** For requests completed during a selected
+date range, show one row per technician and issue category combination with the
+technician's name, category name, completed request count, and average elapsed days
+from submission to completion. Sort by average elapsed days, highest first, to
+identify combinations that may need attention. Exclude open requests. If a
+completed request has no assigned technician, include it under an unassigned
+label. Include completed requests with different
+resolution times and at least one open request in your sample data.
+
+## Additional SQL reports (Complete both)
 
 1. **Open work list:** Show open requests by building, including apartment,
    category, priority, submission date, and technician. Include unassigned requests.
-2. **Resolution summary:** Show completed request counts and average elapsed days
-   from submission to completion by technician and issue category.
-3. **Building issue summary:** Count requests by building and category for a
+2. **Building issue summary:** Count requests by building and category for a
    selected submission date range.
 
 ## Start here

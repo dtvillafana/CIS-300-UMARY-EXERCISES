@@ -26,13 +26,22 @@ Count labor revenue only for closed orders. Vehicle ownership does not change
 during this project. Parts, taxes, payments, and additional mechanics per order
 are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Mechanic labor performance:** For service orders closed during a selected month,
+show one row per lead mechanic with their name, number of distinct closed orders,
+total labor hours, and total labor revenue. Sort by revenue, highest first, to
+compare completed workload and labor sales. Calculate revenue by multiplying each
+service entry's hours by its recorded hourly rate. Include an order with multiple
+services and at least one
+open order in your sample data. Count a closed order only once, and exclude open
+orders from all measures.
+
+## Additional SQL reports (Complete both)
 
 1. **Vehicle service history:** Show a vehicle's owner, service order dates,
    lead mechanics, services, labor hours, and calculated labor charges.
-2. **Monthly mechanic summary:** Show total labor hours and labor revenue by
-   mechanic for orders closed during a selected month.
-3. **Open service orders:** Show open orders with customer contact information,
+2. **Open service orders:** Show open orders with customer contact information,
    vehicle details, lead mechanic, and opening date.
 
 ## Start here

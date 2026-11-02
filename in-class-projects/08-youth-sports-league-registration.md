@@ -24,13 +24,20 @@ teams. Fees are either fully paid or unpaid; partial payments are outside scope.
 Also exclude multiple seasons, game schedules, assistant coaches, and multiple
 guardians per player. Document the reference date used to determine player ages.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Team registration and fee collection:** Show one row per team with registrations,
+including team name, age division, player count, total fees charged, unpaid player
+count, and total unpaid fees. Sort by unpaid fees, highest first, to prioritize
+collection efforts. Include a team whose registrations are all paid and display
+zero unpaid fees for it. Sample data must include paid and unpaid
+registrations and teams in at least two age divisions.
+
+## Additional SQL reports (Complete both)
 
 1. **Team roster:** Show a team's division, coach, players, jersey numbers, and
    primary guardian contact information.
-2. **Outstanding fees:** Show unpaid registration counts and amounts owed by team
-   and age division.
-3. **Guardian registration summary:** Show a selected guardian's players, teams,
+2. **Guardian registration summary:** Show a selected guardian's players, teams,
    fees charged, and payment statuses.
 
 ## Start here

@@ -24,14 +24,22 @@ An equipment item cannot be on two active checkouts at the same time. All items
 on one checkout share its due date. Keep completed checkout history. Reservations,
 fines, repairs, and purchasing workflows are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Equipment demand by category:** For checkouts started during a selected date
+range, show one row per equipment category with its name, total item loans, and
+number of distinct students who borrowed from it. Sort by total item loans,
+highest first, to identify the most-used categories. Count repeated loans of an
+item separately, but count a student only once per category. Include at least one
+student who borrows multiple
+items from the same category in your sample data.
+
+## Additional SQL reports (Complete both)
 
 1. **Overdue equipment:** Show student name and contact information, equipment
    asset number and model, due date, and processing employee for unreturned items
    past their due date.
-2. **Borrowing by category:** Count items checked out in each equipment category
-   during a selected date range. Count repeated loans as separate borrowing events.
-3. **Student borrowing history:** Show a selected student's checkouts, equipment,
+2. **Student borrowing history:** Show a selected student's checkouts, equipment,
    categories, due dates, and individual return dates.
 
 ## Start here

@@ -25,13 +25,21 @@ series of meetings. Discounts may make a registration's fee different from the
 workshop's current standard fee. Payment processing and instructor payroll are
 outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Workshop registration performance:** For sessions occurring during a selected
+month, show one row per workshop with its title, registration count, total fees
+charged, and average fee per registration. Sort by registration count, highest
+first, to compare workshop demand.
+Include only workshops with registrations in that month. In your sample data,
+include registrations across multiple sessions of the same workshop and at least
+one discounted registration. Use fees actually charged, not current standard fees.
+
+## Additional SQL reports (Complete both)
 
 1. **Session roster:** List a selected session's workshop, instructor, room,
    participants, and attendance statuses.
-2. **Workshop registration summary:** Show registration counts and total fees
-   charged by workshop for sessions occurring in a selected month.
-3. **Room capacity review:** Show each session's workshop, room capacity,
+2. **Room capacity review:** Show each session's workshop, room capacity,
    registration count, and remaining seats, including sessions with no registrations.
 
 ## Start here

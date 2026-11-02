@@ -22,13 +22,21 @@ represents a particular book edition identified by its ISBN. Preserve order pric
 when catalog prices change. Authors, inventory, refunds, taxes, shipping charges,
 and payment processing are outside scope. Orders are not canceled in this project.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Publisher sales performance:** For orders placed during a selected date range,
+show one row per publisher with its name, total copies sold, number of distinct
+orders containing its books, and sales revenue. Sort by revenue, highest first,
+to identify the strongest-selling publishers. Calculate revenue using quantities
+and historical order unit prices.
+Include an order with two different books from the same publisher and a quantity
+greater than one in your sample data. Count that order only once for its publisher.
+
+## Additional SQL reports (Complete both)
 
 1. **Order details:** Show a selected order's customer, books, publishers,
    quantities, unit prices, and calculated line totals.
-2. **Publisher sales:** Show copies sold and sales revenue by publisher for orders
-   placed during a selected date range.
-3. **Customer purchase summary:** Show each purchasing customer's order count and
+2. **Customer purchase summary:** Show each purchasing customer's order count and
    total spending during a selected date range.
 
 ## Start here

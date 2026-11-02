@@ -23,13 +23,21 @@ but the same service appears at most once in that appointment. Preserve agreed
 prices even if catalog prices change. For reports, count revenue only from
 completed appointments. Retail products and payment processing are outside scope.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Groomer service performance:** For completed appointments during a selected
+month, show one row per groomer and service combination with the groomer's name,
+service name, number of times the service was performed, total revenue, and average
+price charged. Sort by groomer and then revenue, highest first, to compare each
+groomer's service mix. Use agreed appointment prices and exclude scheduled and
+canceled appointments. Include both
+completed and noncompleted appointments in your sample data.
+
+## Additional SQL reports (Complete both)
 
 1. **Daily groomer schedule:** Show appointment times, pets, owners and their
    contact information, groomers, and selected services for a chosen date.
-2. **Monthly service revenue:** Show completed service counts and revenue by
-   groomer and service for a selected month.
-3. **Pet appointment history:** List a selected pet's appointments, groomers,
+2. **Pet appointment history:** List a selected pet's appointments, groomers,
    statuses, services, and agreed prices.
 
 ## Start here

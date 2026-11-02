@@ -24,13 +24,21 @@ of the item's defined unit. Do not add unlike units together into a single food
 quantity. Purchasing, donations, inventory balances, individual household members,
 and historical household sizes are outside scope. Use fictional household data.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Monthly food demand:** For visits during a selected month, show one row per food
+item with its name, category, distribution unit, total quantity distributed, and
+number of distinct households receiving it. Sort by category and item name to help
+staff review demand. Keep quantities in each item's defined unit; do not combine
+cans, boxes, and bags into one total.
+Include a household receiving the same item on multiple visits in your sample
+data. Sum all its distributions, but count that household only once for that item.
+
+## Additional SQL reports (Complete both)
 
 1. **Household distribution history:** Show a selected household's visit dates,
    volunteers, food items, quantities, and units.
-2. **Monthly item distribution:** Show quantities distributed by item and category
-   during a selected month, displaying each item's unit.
-3. **Volunteer activity:** Show the number of visits handled and distinct
+2. **Volunteer activity:** Show the number of visits handled and distinct
    households served by each volunteer during a selected date range.
 
 ## Start here

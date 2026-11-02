@@ -23,14 +23,23 @@ must not overlap. Registration cancellations, waitlists, payments, multiple
 speakers per session, and attendee scheduling-conflict enforcement are outside
 scope. Use capacity reports to identify full or overbooked sessions.
 
-## Suggested SQL reports
+## Required analytical SQL report
+
+**Session enrollment and capacity:** Show one row per session with its title,
+speaker, room, seating capacity, registration count, remaining seats, and percentage
+of capacity filled. Sort by percentage filled, highest first, to identify popular
+and overbooked sessions. Include sessions with no registrations and display zero
+for their registration count and
+percentage filled. Room capacities must be positive, and percentages should show
+one decimal place; a negative remaining-seat count indicates overbooking. Include
+an empty session, a partially filled session, and a full or overbooked session in
+your sample data.
+
+## Additional SQL reports (Complete both)
 
 1. **Personalized schedule:** Show a selected attendee's sessions in time order,
    including titles, start and end times, rooms, and speakers.
-2. **Capacity review:** Show every session's speaker, room, capacity, registration
-   count, and remaining seats, including sessions with no registrations. Negative
-   remaining seats indicate overbooking.
-3. **Speaker enrollment summary:** Show each speaker's session count and total
+2. **Speaker enrollment summary:** Show each speaker's session count and total
    session registrations. An attendee registered for two sessions counts twice
    in this registration total.
 
