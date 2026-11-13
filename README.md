@@ -35,9 +35,12 @@ DB Browser for SQLite cannot connect to PostgreSQL.
 
 ## Exercises
 
-- [`in-class-projects/`](in-class-projects/README.md): 11 database design project briefs, each scoped
+- [`in-class-projects/project1/`](in-class-projects/project1/README.md): 11 database design project briefs, each scoped
   to 4–7 tables in 3NF and 3 SQL reports using joins, including a required
   analytical report answering a business question.
+- [`in-class-projects/project2/`](in-class-projects/project2/README.md): extensions of
+  those projects with revised business rules, 1–3 additional tables, database
+  automation, historical records, and a more advanced analytical report.
 - `week3/`: joins and relationship cardinalities.
 - [`chapters7-8/`](chapters7-8/README.md): guided SQL labs based on the
   Chapter 7 (Introduction to SQL) and Chapter 8 (Advanced SQL) PowerPoints.

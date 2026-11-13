@@ -1,5 +1,8 @@
 # Database Design Projects
 
+Continue your chosen scenario in [Project 2](../project2/README.md) after completing
+this assignment.
+
 Choose one project below. Each project is designed for a database with **4–7
 tables in third normal form (3NF)** and **3 SQL reports that join related
 tables**. The descriptions specify business needs, not a finished schema: deciding
@@ -40,7 +43,7 @@ SQL reports.
 - Write a SQL script that creates the tables with appropriate primary keys,
   foreign keys, required fields, uniqueness rules, and value checks.
 - Use the database system assigned by your instructor. For graphical setup
-  instructions, see the [student setup guide](../STUDENT_SETUP.md).
+  instructions, see the [student setup guide](../../STUDENT_SETUP.md).
 - Insert fictional sample data into every table. Include enough variety to show
   one-to-many relationships, any many-to-many relationships, and meaningful report
   results. Include optional or incomplete records where the scenario allows them.
